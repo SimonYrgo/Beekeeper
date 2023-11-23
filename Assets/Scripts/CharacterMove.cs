@@ -47,7 +47,7 @@ public class CharacterMove : MonoBehaviour
         forward.y = 0; // skippa kamerans rotation på karaktären i dessa riktningar
         right.y = 0;
 
-        Vector3 direction = forward * vertical + right * horizontal; // lagrar dessa siffror i ett array vilket inte var lät att fatta
+        Vector3 direction = forward * vertical + right * horizontal; // lagrar dessa siffror i ett array vilket inte var lätt att fatta. Men om det är en Vector3 man skapar så är det en grupp på 3 siffror
 
         Vector3 movement = transform.position + direction.normalized * Time.fixedDeltaTime * movementSpeed; // använder ovan array
 
