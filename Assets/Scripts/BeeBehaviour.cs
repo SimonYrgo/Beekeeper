@@ -22,7 +22,7 @@ public class BeeBehavoiur: MonoBehaviour
     {
         var emission = ps.emission; //varför är denna i Update? Är det så att ps.emission förändras hela tiden?  Har iofs för mig att man var tvungen att referera till ett partikelsystem med en variabel (ist f direkt).
         
-        if (removelid.grabbed)    // använder det i "dold slot"         
+        if (removelid.grabbed)    // använder det i "dold slot" , boolen måste vara public i Remove Lid scriptet annars kan jag inte komma åt den verkar det som? Kolla andra script om detta stämmer         
         {
             emission.rateOverTime = 70f; // på partikelsystemet finns denna parameter,  som när den ökas gör att partiklarna blir fler tror jag
         }

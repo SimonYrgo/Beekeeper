@@ -16,8 +16,9 @@ using TMPro;
 
 public class RemoveLid : MonoBehaviour
 {
-
+    
     public TMP_Text messageBoard; // Skapar slot för att kunna skriva meddelanden i Game Message TMP-Textobjektet
+
 
     bool pickUpAble;
 
@@ -25,12 +26,16 @@ public class RemoveLid : MonoBehaviour
 
     bool canDropLid;
 
+    public bool lidDropped;
+
+
 
     public Transform grabbingPointTransform; // ser om jag kan lägga ett gameobjekt här i, som jag kan sno en Transform från sen
 
     public GameObject boxLid; // skapar slot för boxLid för att kunna manipulera dess tranform sen
 
     private Rigidbody boxLidRb; // måste skapa en Rigidbody-variabel för att kunna hänvisa till boxLids Rigidbody
+
 
 
     void Start()
@@ -41,6 +46,8 @@ public class RemoveLid : MonoBehaviour
 
         canDropLid = false;
 
+        lidDropped = false;
+
         boxLidRb = boxLid.GetComponent<Rigidbody>(); // hämtar Rigidbodyn från GameObjectet i sloten boxLid
     }
 
@@ -50,17 +57,21 @@ public class RemoveLid : MonoBehaviour
 
         // if-sats som kollar taggen på objektet, vars collider gick i i triggern
 
-        if (player.tag == "Player")
+        if (player.tag == "Player" && !lidDropped)
         {
 
-            messageBoard.gameObject.SetActive(true);
+            //messageBoard.gameObject.SetActive(true);
+
+            messageBoard.text = "To Remove Lid Press R";
 
             pickUpAble = true;
+
+            
             
 
         }
 
-
+         // Debug.Log("lidDropped " + lidDropped); // Kollade om lidDropped funkade
     }
 
     private void Update() 
@@ -95,9 +106,13 @@ public class RemoveLid : MonoBehaviour
                 messageBoard.text = "The bees seem angry, maybe you should try some smoke? ";
 
                 canDropLid = false;
+
+                pickUpAble = false; // så att man inte kan plocka upp lid igen när den är på marken
                 
-                GetComponent<Collider>().enabled = false; // stänger av Collidern på detta gameobjectet, inte riktigt det jag ville men funkar för att inte tjata om Remove Lid.
+                // GetComponent<Collider>().enabled = false; // stänger av Collidern på detta gameobjectet, inte riktigt det jag ville men funkar för att inte tjata om Remove Lid.
                                                           // .. Kan ju också förstöra textPanelerna eter hand men då får man kanske error om man inte kör Try Set Active el liknande. 
+
+                lidDropped = true; // testar detta så kan jag behålla Collidern på istället. 
             }
 
 
