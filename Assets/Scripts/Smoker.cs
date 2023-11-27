@@ -5,8 +5,8 @@ using UnityEngine;
 using TMPro;
 
 /*
- *  Fixat TriggerCollider bara på marken för smokern annars kan man ju aldrig gå ur den..
- * 
+ *  Fixa Invoke metod så man bara kan puffa rök i en sekund och sen stänga av Wind. Ex på Invoke finns i Interactable scriptet. 
+ *  // canDropSmoker = true;   // se längst ner just nu, denna ska inte bli sann ännu var ska vi lägga den? 
  */
 
 
@@ -18,12 +18,16 @@ public class Smoker : MonoBehaviour
 
     public TMP_Text messageBoard; // Skapar slot för att kunna skriva meddelanden i Game Message TMP-Textobjektet
 
+    public ParticleSystem smokeParticleSystem; 
+
 
     bool pickUpAble;
 
     bool grabbed;
 
-    bool canDropSmoker;
+    bool smokerLighted;
+
+    // bool canDropSmoker; ska användas senare
 
     bool smokerDropped;
 
@@ -38,7 +42,11 @@ public class Smoker : MonoBehaviour
 
     public GameObject smoker; // skapar slot för smoker för att kunna manipulera dess tranform sen
 
+    public WindZone windSmoke;
+
     private Rigidbody smokerRb; // måste skapa en Rigidbody-variabel för att kunna hänvisa till smoker Rigidbody
+
+    private Collider smokerCollider;
 
 
 
@@ -50,14 +58,27 @@ public class Smoker : MonoBehaviour
 
         grabbed = false;
 
-        canDropSmoker = false;
+        smokerLighted = false;
+
+        // canDropSmoker = false; ska användas senare
 
         smokerDropped = false;
 
         smokerRb = smoker.GetComponent<Rigidbody>(); // hämtar Rigidbodyn från GameObjectet i sloten smoker
 
-        
-    }
+        smokerCollider = smoker.GetComponent<Collider>();
+
+        smokeParticleSystem = smokeParticleSystem.GetComponent<ParticleSystem>(); // måste man göra det? kanske .. 
+
+        smokeParticleSystem.Stop();
+
+        windSmoke.windMain = 1; // Sätter Vinden till O  
+
+       
+
+
+
+}
 
 
     private void OnTriggerEnter(Collider player) // verkar referera till Objektet som går in i triggern via dess collider 
@@ -84,49 +105,67 @@ public class Smoker : MonoBehaviour
 
     private void Update()
     {
-        if (pickUpAble)
+        if (pickUpAble) // om man kan plocka upp smoker >
         {
-            if (Input.GetKeyDown(KeyCode.P)) // Varför detta funkar här och inte i OnTriggerEnter vet jag inte
+            if (Input.GetKeyDown(KeyCode.P)) //  > Trycker man P? 
             {
 
-                grabbed = true;
+                grabbed = true;              //  > sätt grabbed till True
 
 
             }
         }
 
-        if (grabbed) // ska det inte vara while här i stället?  Verkar ju funka iofs
+        if (grabbed) // > sätt iså fall grabbed till trur och flytta på smokers position 
         {
-            smokerRb.MovePosition(grabbingPointTransform.position); // Sätter smoker tranform + rotation till grabbingPointens. Hade kanske varit enklare att childa till Player (som Nose) ? 
-
-            // smokerRb.transform.position = smokerRb.transform.position - new Vector3 (0, 0.01f, 0);  // Denna rad gjorde ngt konstigt,  fattar inte riktigt vad?
-
-
-            smokerRb.MoveRotation(grabbingPointTransform.rotation);
+            //smokerRb.MovePosition(grabbingPointTransform.position); // min kod kör Carls nedan istället. 
+            //smokerRb.MoveRotation(grabbingPointTransform.rotation);
+            // smokerRb.useGravity = false;
 
 
-            smokerRb.useGravity = false;
+            smokerRb.transform.position = grabbingPointTransform.position;   // samma som min kod tror jag 
+            smokerRb.transform.rotation = grabbingPointTransform.rotation;   // samma som min kod tror jag 
+            smoker.transform.parent = grabbingPointTransform;                // Sätter boxLid som child till parent, varför vet jag inte riktigt än varför det skulle vara bra
+            smokerRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
+            smokerCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
+
+
+            if (Input.GetKeyDown(KeyCode.L))                                // Drar igång smokeParticleSystem och sätter boolen smokerLighted till true
+            {
+
+                smokeParticleSystem.Play();                                  
+                smokerLighted = true;
+                messageBoard.text = "Smoker lighted, go give bees smoke. To Puff Smoke press P";
+
+
+            }
 
 
 
-            if (Input.GetKeyDown(KeyCode.E) && canDropSmoker) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu. 
+
+
+
+
+
+            /*
+
+            if (Input.GetKeyDown(KeyCode.E) && canDropSmoker) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu så koden är utkommenterad. 
             {
                 grabbed = false;
 
-                smokerRb.useGravity = true;
+                smoker.transform.parent = null;                
+                smokerRb.isKinematic = false;                                    
+                smokerCollider.isTrigger = false;
 
-                messageBoard.text = "The bees seem angry, maybe you should try some smoke? ";
+                messageBoard.text = "Smoker Dropped ";
 
                 canDropSmoker = false;
 
-                pickUpAble = false; // så att man inte kan plocka upp lid igen när den är på marken
+                pickUpAble = false; 
 
-                // GetComponent<Collider>().enabled = false; // stänger av Collidern på detta gameobjectet, inte riktigt det jag ville men funkar för att inte få fel meddelanden i loggen.
-                // .. Kan ju också förstöra textPanelerna eter hand men då får man kanske error om man inte kör Try Set Active el liknande. 
-
-                smokerDropped = true; // testar detta så kan jag behålla Collidern på istället. 
+                smokerDropped = true; 
             }
-
+            */
 
         }
 
@@ -141,17 +180,17 @@ public class Smoker : MonoBehaviour
         {
 
 
-            canDropSmoker = true;
+            // canDropSmoker = true;   // denna ska inte bli sann ännu var ska vi lägga den? 
 
 
 
 
             if (grabbed)
             {
-                messageBoard.text = "Good, now drop lid on ground (E)";
+                messageBoard.text = "To líght Smoker press L";
 
 
-
+                
 
             }
 

@@ -36,6 +36,8 @@ public class RemoveLid : MonoBehaviour
 
     private Rigidbody boxLidRb; // måste skapa en Rigidbody-variabel för att kunna hänvisa till boxLids Rigidbody
 
+    private Collider boxLidCollider;
+
 
 
     void Start()
@@ -49,7 +51,9 @@ public class RemoveLid : MonoBehaviour
         lidDropped = false;
 
         boxLidRb = boxLid.GetComponent<Rigidbody>(); // hämtar Rigidbodyn från GameObjectet i sloten boxLid
-    }
+
+        boxLidCollider = boxLid.GetComponent<Collider>();
+}
 
     
     private void OnTriggerEnter(Collider player) // verkar referera till Objektet som går in i triggern via dess collider 
@@ -89,16 +93,29 @@ public class RemoveLid : MonoBehaviour
 
         if (grabbed) // ska det inte vara while här i stället?  Verkar ju funka iofs
         {
-            boxLidRb.MovePosition(grabbingPointTransform.position); // Sätter boxLids tranform + rotation till grabbingPointens. Hade kanske varit enklare att childa boxLid till Player (som Nose) ? 
-            boxLidRb.MoveRotation(grabbingPointTransform.rotation);
+            //boxLidRb.MovePosition(grabbingPointTransform.position); // Sätter boxLids tranform + rotation till grabbingPointens. Hade kanske varit enklare att childa boxLid till Player (som Nose) ? 
+            //boxLidRb.MoveRotation(grabbingPointTransform.rotation);
 
+            
+            boxLidRb.transform.position = grabbingPointTransform.position;   // samma som min kod tror jag 
+            boxLidRb.transform.rotation = grabbingPointTransform.rotation;   // samma som min kod tror jag 
+            boxLid.transform.parent = grabbingPointTransform;                // Sätter boxLid som child till parent, varför vet jag inte riktigt än varför det skulle vara bra
+            boxLidRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
+            boxLidCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
 
-            boxLidRb.useGravity = false;
+           
+
+            // boxLidRb.useGravity = false; // Om den är trigger har den ingen gravity. 
 
             
 
             if (Input.GetKeyDown(KeyCode.E) && canDropLid) // funktion för att släppa boxLid på marken när man gått ur TriggerCollidern vid kupan
             {
+
+                boxLid.transform.parent = null;
+                boxLidRb.isKinematic = false;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
+                boxLidCollider.isTrigger = false;
+
                 grabbed = false;
 
                 boxLidRb.useGravity = true;
