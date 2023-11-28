@@ -5,8 +5,7 @@ using UnityEngine;
 using TMPro;
 
 /*
- *  Fixa Invoke metod så man bara kan puffa rök i en sekund och sen stänga av Wind. Ex på Invoke finns i Interactable scriptet. 
- *  // canDropSmoker = true;   // se längst ner just nu, denna ska inte bli sann ännu var ska vi lägga den? 
+ *  
  */
 
 
@@ -25,9 +24,9 @@ public class Smoker : MonoBehaviour
 
     bool grabbed;
 
-    bool smokerLighted;
+    public bool smokerLighted; // kan kanske användas senare
 
-    // bool canDropSmoker; ska användas senare
+    public bool canDropSmoker; // ska användas senare
 
     bool smokerDropped;
 
@@ -42,7 +41,7 @@ public class Smoker : MonoBehaviour
 
     public GameObject smoker; // skapar slot för smoker för att kunna manipulera dess tranform sen
 
-    public WindZone windSmoke;
+    // public WindZone windSmoke;
 
     private Rigidbody smokerRb; // måste skapa en Rigidbody-variabel för att kunna hänvisa till smoker Rigidbody
 
@@ -60,7 +59,7 @@ public class Smoker : MonoBehaviour
 
         smokerLighted = false;
 
-        // canDropSmoker = false; ska användas senare
+        canDropSmoker = false; // ska användas senare
 
         smokerDropped = false;
 
@@ -72,7 +71,7 @@ public class Smoker : MonoBehaviour
 
         smokeParticleSystem.Stop();
 
-        windSmoke.windMain = 1; // Sätter Vinden till O  
+       // windSmoke.windMain = 0; // Sätter Vinden till O  
 
        
 
@@ -123,26 +122,38 @@ public class Smoker : MonoBehaviour
             // smokerRb.useGravity = false;
 
 
-            smokerRb.transform.position = grabbingPointTransform.position;   // samma som min kod tror jag 
-            smokerRb.transform.rotation = grabbingPointTransform.rotation;   // samma som min kod tror jag 
+            // Grabfunktionen nedan skulle kunna vara en metod utanför update,  som man bara kallar en gång? 
+
+            smokerRb.transform.position = grabbingPointTransform.position;   // gör samma som min kod tror jag 
+            smokerRb.transform.rotation = grabbingPointTransform.rotation;   // gör samma som min kod tror jag 
             smoker.transform.parent = grabbingPointTransform;                // Sätter boxLid som child till parent, varför vet jag inte riktigt än varför det skulle vara bra
             smokerRb.isKinematic = true;                                     // Sätter boxlid till Kinematic = den har ingen graivty och kan inte flyttas av collisions
-            smokerCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
+            smokerCollider.isTrigger = true;                                 // Förutom att göra till en Trigger -  har ingen fysik och kan inte flytta saker? .. > 
+                                                                             // > ..  = om jag har den här på smokerscriptet så kommer den inet att flytta på mig. 
 
 
             if (Input.GetKeyDown(KeyCode.L))                                // Drar igång smokeParticleSystem och sätter boolen smokerLighted till true
             {
 
                 smokeParticleSystem.Play();                                  
-                smokerLighted = true;
-                messageBoard.text = "Smoker lighted, go give bees smoke. To Puff Smoke press P";
+                smokerLighted = true; // kan kanske användas senare
+                messageBoard.text = "Smoker lighted, go give bees smoke.";
 
+            }
 
+            /*
+
+            if (Input.GetKeyDown(KeyCode.P) && smokerLighted) // Sätter på windSmoke, väntar 1 s innan den kallar metod som disablar
+            {
+
+                // Debug.Log("P nedtryckt");
+                windSmoke.windMain = 1;
+                Invoke(nameof(DisableWind), 1);
             }
 
 
 
-
+            */
 
 
 
@@ -180,7 +191,7 @@ public class Smoker : MonoBehaviour
         {
 
 
-            // canDropSmoker = true;   // denna ska inte bli sann ännu var ska vi lägga den? 
+            // canDropSmoker = true;   // denna ska inte bli sann ännu var ska vi lägga den tror på BeeHive Trigger? 
 
 
 
@@ -200,6 +211,14 @@ public class Smoker : MonoBehaviour
 
     }
 
+    /*
+
+    public void DisableWind() // metoden stänger windSmoke efter 1s när man puffar rök 
+    {
+        windSmoke.windMain = 0;
+    }
+
+    */
 
 }
 

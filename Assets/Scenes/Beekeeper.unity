@@ -6381,9 +6381,8 @@ GameObject:
   - component: {fileID: 470364597}
   - component: {fileID: 470364596}
   - component: {fileID: 470364595}
-  - component: {fileID: 470364600}
   m_Layer: 0
-  m_Name: 'HoneyBoxWhite (Remove Box Lid Trigger) '
+  m_Name: 'HoneyBoxWhite '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6488,23 +6487,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2064079516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &470364600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470364594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881681ebc2a0eca4eb5a381cfd34a28c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageBoard: {fileID: 1091694407}
-  grabbed: 0
-  lidDropped: 0
-  grabbingPointTransform: {fileID: 480795421}
-  boxLid: {fileID: 735673842}
 --- !u!1 &480795420
 GameObject:
   m_ObjectHideFlags: 0
@@ -6758,7 +6740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557281491}
   m_Layer: 0
-  m_Name: 'Wax Removal Tray '
+  m_Name: Wax Removal Tray Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12054,7 +12036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 743670450}
   m_Layer: 0
-  m_Name: Honey Extractor
+  m_Name: Honey Extractor Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12091,7 +12073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 789057899}
   m_Layer: 0
-  m_Name: House
+  m_Name: House Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12863,7 +12845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177729086}
   m_Layer: 0
-  m_Name: House Bench
+  m_Name: House Bench Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14605,7 +14587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858082590}
   m_Layer: 0
-  m_Name: Beehive
+  m_Name: 'Beehive Parent '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14715,6 +14697,92 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1900486352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900486355}
+  - component: {fileID: 1900486354}
+  - component: {fileID: 1900486353}
+  - component: {fileID: 1900486356}
+  m_Layer: 0
+  m_Name: Beehive Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1900486353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900486352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881681ebc2a0eca4eb5a381cfd34a28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageBoard: {fileID: 1091694407}
+  grabbed: 0
+  lidDropped: 0
+  grabbingPointTransform: {fileID: 480795421}
+  boxLid: {fileID: 735673842}
+--- !u!65 &1900486354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900486352}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1900486355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900486352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.33, y: 1.42, z: 19.68}
+  m_LocalScale: {x: 2.7238297, y: 2.7238297, z: 2.7238297}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900486356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900486352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16841f59beee71342a04165d730bf90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageBoard: {fileID: 1091694407}
+  windSmoke: {fileID: 57830104}
 --- !u!1 &1970418945
 GameObject:
   m_ObjectHideFlags: 0
@@ -14783,9 +14851,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageBoard: {fileID: 1091694407}
   smokeParticleSystem: {fileID: 357909972}
+  smokerLighted: 0
+  canDropSmoker: 0
   grabbingPointTransform: {fileID: 480795421}
   smoker: {fileID: 1860796177}
-  windSmoke: {fileID: 57830104}
 --- !u!1 &2007287796
 GameObject:
   m_ObjectHideFlags: 0
@@ -15757,19 +15826,20 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2007287797}
-  - {fileID: 1529968819}
   - {fileID: 399840714}
+  - {fileID: 2114084061}
+  - {fileID: 1529968819}
   - {fileID: 388519862}
   - {fileID: 789057899}
   - {fileID: 1177729086}
-  - {fileID: 1858082590}
   - {fileID: 743670450}
   - {fileID: 557281491}
+  - {fileID: 1858082590}
+  - {fileID: 1900486355}
   - {fileID: 1860796178}
   - {fileID: 1970418947}
-  - {fileID: 2114084061}
   - {fileID: 114349503}
   - {fileID: 662713782}
-  - {fileID: 589861726}
-  - {fileID: 2135220933}
   - {fileID: 57830105}
+  - {fileID: 2135220933}
+  - {fileID: 589861726}
