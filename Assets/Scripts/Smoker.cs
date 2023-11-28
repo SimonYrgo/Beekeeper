@@ -156,27 +156,36 @@ public class Smoker : MonoBehaviour
             */
 
 
-
-
-            /*
-
-            if (Input.GetKeyDown(KeyCode.E) && canDropSmoker) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu så koden är utkommenterad. 
+            if (canDropSmoker)
             {
-                grabbed = false;
 
-                smoker.transform.parent = null;                
-                smokerRb.isKinematic = false;                                    
-                smokerCollider.isTrigger = false;
+                Debug.Log("Nu Kom Vi Hit Till SmokerScriptet");
 
-                messageBoard.text = "Smoker Dropped ";
+                messageBoard.text = "Press E to Drop Smoker";
 
-                canDropSmoker = false;
+                if (Input.GetKeyDown(KeyCode.E) && canDropSmoker) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu så koden är utkommenterad. 
+                {
+                    grabbed = false;
 
-                pickUpAble = false; 
+                    smoker.transform.parent = null;
+                    smokerRb.isKinematic = false;
+                    smokerCollider.isTrigger = false;
 
-                smokerDropped = true; 
+                    messageBoard.text = "Smoker Dropped ";
+
+                    canDropSmoker = false;
+
+                    pickUpAble = false;
+
+                    smokerDropped = true;
+                }
+
+
             }
-            */
+
+
+
+
 
         }
 
