@@ -18,7 +18,9 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
 
     bool hasSmokedBees;
 
-    
+    bool canExtinguishSmoker;
+
+
     void Start()
     {
         smoker = GameObject.FindObjectOfType<Smoker>(); // fyller dold slot med ett Smoker object
@@ -28,6 +30,8 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
         canSmokeBees = false;
 
         hasSmokedBees = false;
+
+        canExtinguishSmoker = true;
 
         windSmoke.windMain = 0; // Sätter Vinden till O  
 
@@ -41,7 +45,7 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                // Debug.Log("P nedtryckt");
+               
                 windSmoke.windMain = 1;
                 Invoke(nameof(DisableWind), 1);
                 hasSmokedBees = true;
@@ -54,23 +58,20 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
 
         }
 
-        if (hasSmokedBees)
+        if (hasSmokedBees  && canExtinguishSmoker) // ev ska man göra en bool som heter canExtinguishSmoker el ngt istället -  lite som ovan att man stänger av möjlighet till loopen att upprepa sig genom att lägga en villkor i loopen
         {
-            messageBoard.text = "The Bees seem calmer, now extinguish Smoker with C";
+            messageBoard.text = "The Bees seem calmer, extinguish smoker with C";
 
             if (Input.GetKeyDown(KeyCode.C))
             {
                 smoker.smokeParticleSystem.Stop();
                 smoker.smokerLighted = false; // kan kanske användas senare
-
-                messageBoard.text = "Move Away To Drop Smoker";
+                canExtinguishSmoker = false;
 
             }
 
-            
 
-
-        }
+         }
 
     }
 
@@ -91,8 +92,6 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
         {
             canSmokeBees = true;
 
-            //messageBoard.gameObject.SetActive(true);
-
             messageBoard.text = "To To Puff Smoke press P";
 
         }
@@ -105,12 +104,9 @@ public class SmokeBeesTakeHoneyBox : MonoBehaviour
 
         if (player.tag == "Player" && hasSmokedBees && !smoker.smokerLighted)
         {
-            {   
+            {
 
                 smoker.canDropSmoker = true;  // Skickar vidare till Smokerscriptet för att kunna droppa smokern
-
-                Debug.Log("Så far så good " + smoker.canDropSmoker);
-
 
             }
 

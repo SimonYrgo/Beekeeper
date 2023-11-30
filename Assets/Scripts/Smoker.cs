@@ -28,7 +28,7 @@ public class Smoker : MonoBehaviour
 
     public bool canDropSmoker; // ska användas senare
 
-    bool smokerDropped;
+    public bool smokerDropped;
 
 
     RemoveLid isLidDropped;
@@ -159,11 +159,9 @@ public class Smoker : MonoBehaviour
             if (canDropSmoker)
             {
 
-                Debug.Log("Nu Kom Vi Hit Till SmokerScriptet");
-
                 messageBoard.text = "Press E to Drop Smoker";
 
-                if (Input.GetKeyDown(KeyCode.E) && canDropSmoker) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu så koden är utkommenterad. 
+                if (Input.GetKeyDown(KeyCode.E) ) // funktion för att släppa smoker på marken när man gått ur TriggerCollidern vid kupan. Detta ska inte hända ännu så koden är utkommenterad. 
                 {
                     grabbed = false;
 
@@ -171,22 +169,22 @@ public class Smoker : MonoBehaviour
                     smokerRb.isKinematic = false;
                     smokerCollider.isTrigger = false;
 
-                    messageBoard.text = "Smoker Dropped ";
+                    
 
                     canDropSmoker = false;
 
                     pickUpAble = false;
 
                     smokerDropped = true;
+
+                    messageBoard.text = "Open Door in Shed";
                 }
 
+                
 
             }
 
-
-
-
-
+           
         }
 
 
