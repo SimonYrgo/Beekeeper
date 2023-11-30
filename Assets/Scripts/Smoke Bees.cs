@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SmokeBeesTakeHoneyBox : MonoBehaviour
+public class SmokeBees : MonoBehaviour
 {
 
     public TMP_Text messageBoard;

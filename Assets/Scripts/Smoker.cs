@@ -33,6 +33,8 @@ public class Smoker : MonoBehaviour
 
     RemoveLid isLidDropped;
 
+    DoorInteract doorInteract;
+
     
 
 
@@ -52,6 +54,8 @@ public class Smoker : MonoBehaviour
     void Start()
     {
         isLidDropped = GameObject.FindObjectOfType<RemoveLid>();
+
+        doorInteract = GameObject.FindObjectOfType<DoorInteract>();      
 
         pickUpAble = false;
 
@@ -177,7 +181,9 @@ public class Smoker : MonoBehaviour
 
                     smokerDropped = true;
 
-                    messageBoard.text = "Open Door in Shed";
+                    doorInteract.doorCanOpen = true;
+
+                    messageBoard.text = "Open Door to Shed with Q";
                 }
 
                 
