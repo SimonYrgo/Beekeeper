@@ -19,6 +19,16 @@ public class CameraMove : MonoBehaviour
         float newRotationY = transform.localEulerAngles.x - Input.GetAxis("Mouse Y") * cameraSpeed; // Samma sak fast upp/ner med musen. Kommenterade ut, för tyckte det var lite rörigt med upp/ner funktionen. 
                                                                                                     // detta ger oss ett nytt rotationsvärde för x-axeln på objektet. 
 
+        if (newRotationY > 280 && newRotationY < 300) // Begränsa möjlighet för kamerans Y-rörelse när du tittar neråt
+        {
+            newRotationY = Mathf.Clamp(newRotationY, 300f, 360f);        
+        }
+
+        if (newRotationY > 80 && newRotationY < 90)  // samma sak fast när du tiiatr uppåt
+        {
+            newRotationY = Mathf.Clamp(newRotationY, 0f, 80f);
+        }
+
 
 
         Vector3 desiredRotation = new Vector3(newRotationY, newRotationX, 0);
