@@ -22,7 +22,7 @@ public class TakeHoneyBox : MonoBehaviour
 
     private Collider honeyBoxCollider; 
 
-    NextLevel nextLevel;
+    GoingInside goingInside;
 
 
     void Start()
@@ -31,7 +31,7 @@ public class TakeHoneyBox : MonoBehaviour
 
         honeyBoxCollider = honeyBox.GetComponent<Collider>();
 
-        nextLevel = GameObject.FindObjectOfType<NextLevel>();
+        goingInside = GameObject.FindObjectOfType<GoingInside>();
 
     }
 
@@ -94,9 +94,10 @@ public class TakeHoneyBox : MonoBehaviour
             if (grabbed)
             {
 
-            Debug.Log("grabbed = "+  grabbed); 
+            Debug.Log("grabbed = "+  grabbed);
 
-            nextLevel.levelFinished = true;
+            messageBoard.text = "Take HoneyBox inside and put on bench";
+                goingInside.goingInsideHouse = true;
 
             }
 

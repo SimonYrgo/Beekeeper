@@ -3,28 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevel : MonoBehaviour
+public class GoingInside : MonoBehaviour
 {
 
-    public bool levelFinished = false;
+    public bool goingInsideHouse = false;
+
+    OpenDoor openDoor;
 
 
     private void Start()
     {
         
-
+        openDoor = GameObject.FindObjectOfType<OpenDoor>();
 
     }
 
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Så far Så good");
-        Debug.Log(levelFinished);
 
-        if (levelFinished)
+        if (goingInsideHouse)
         {
+            
+            // openDoor.Close();
+
             SceneManager.LoadScene(0);
+            
+
         }
 
         

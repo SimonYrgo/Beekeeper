@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Unused/BrightDay.unity
-    guid: 69d39a0c44651ce409e87630e88bedcd
+    path: Assets/Scenes/Inside Making Honey.unity
+    guid: fbd5ec33507f77545b569842a4f75b2d
   m_configObjects: {}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    public bool autoClose = false;
+    public bool autoClose = false; // tror inte att denna används
 
     private bool canOpen = false;
     private Transform parent;
@@ -64,12 +64,12 @@ public class OpenDoor : MonoBehaviour
         canOpen = false;
     }
 
-    private void Open()
+    public void Open()
     {
         parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, openRotation, 10 * Time.deltaTime);
     }
 
-    private void Close()
+    public void Close()
     {
         parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, startRotation, 10 * Time.deltaTime);
     }
