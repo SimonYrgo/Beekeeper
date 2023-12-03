@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Inside Making Honey.unity
+    path: Assets/Scenes/Indoors.unity
     guid: fbd5ec33507f77545b569842a4f75b2d
   m_configObjects: {}

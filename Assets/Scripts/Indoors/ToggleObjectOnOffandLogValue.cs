@@ -5,7 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 using System.Runtime.CompilerServices;
 
-public class ToggleObject : MonoBehaviour
+
+/*
+ * Det här scriptet gör inte så mycket ännu, bara loggar slider.value om det ändras 
+ * 
+ * 
+ */
+
+public class ToggleObjectOnOffandLogValue : MonoBehaviour
 {
 
     public Slider slider;
@@ -33,7 +40,7 @@ public class ToggleObject : MonoBehaviour
 
         }
 
-        // Debug.Log(slider.value);
+        
 
 
 
@@ -47,11 +54,6 @@ public class ToggleObject : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed (float speed)
-    {
-        
-
-    }
-
+   
 
 }

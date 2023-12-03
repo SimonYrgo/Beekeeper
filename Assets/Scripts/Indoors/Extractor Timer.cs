@@ -10,7 +10,7 @@ public class ExtractorTimer : MonoBehaviour
 
     public TMP_Text timerText;
 
-    ExtractorMoveLerp extractorMoveLerp;
+    ExtractorOperate extractorMoveLerp;
 
     float totalTime = 100f;
 
@@ -20,7 +20,7 @@ public class ExtractorTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        extractorMoveLerp = GameObject.FindObjectOfType<ExtractorMoveLerp>();
+        extractorMoveLerp = GameObject.FindObjectOfType<ExtractorOperate>();
 
         sliderDefautValue = slider.minValue;   // ..om vi ändrar i Unity på Sliderns värde så behöver vi inte ändra den här
 

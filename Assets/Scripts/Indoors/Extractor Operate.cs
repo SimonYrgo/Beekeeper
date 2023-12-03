@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ExtractorMoveLerp : MonoBehaviour
+public class ExtractorOperate : MonoBehaviour
 {
     public Transform startPosition; // Set start position from an empty object in the scene
     public Transform endPosition; // Set end position from an empty object in the scene
@@ -13,9 +13,11 @@ public class ExtractorMoveLerp : MonoBehaviour
     private float currentLerpTime = 0f;
     public bool isLerping = false;
 
+    public bool canMakeHoney;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) // lägg till && canMakeHoney;
+        if (Input.GetKeyDown(KeyCode.P) && canMakeHoney) // lägg till && canMakeHoney;
         {
             // Toggle the lerping flag
             isLerping = !isLerping; // sätt boolen att det ska börja lerpa till sin motsas
