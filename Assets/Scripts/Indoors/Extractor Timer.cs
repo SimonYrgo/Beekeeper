@@ -10,6 +10,10 @@ public class ExtractorTimer : MonoBehaviour
 
     public TMP_Text timerText;
 
+    public TMP_Text extractorSpeedControl;
+
+    public TMP_Text messageboard;
+
     ExtractorOperate extractorMoveLerp;
 
     float totalTime = 100f;
@@ -22,7 +26,11 @@ public class ExtractorTimer : MonoBehaviour
     {
         extractorMoveLerp = GameObject.FindObjectOfType<ExtractorOperate>();
 
-        sliderDefautValue = slider.minValue;   // ..om vi ändrar i Unity på Sliderns värde så behöver vi inte ändra den här
+        // sliderDefautValue = slider.minValue;   // ..om vi ändrar i Unity på Sliderns värde så behöver vi inte ändra den här, flyttar ner den till Update för vill ha den oaktiverad till den ska användas
+
+        slider.gameObject.SetActive(false);
+
+        extractorSpeedControl.gameObject.SetActive(false);
 
     }
 
@@ -38,6 +46,12 @@ public class ExtractorTimer : MonoBehaviour
         if (extractorMoveLerp.isLerping) // Detta är en klockfunktion som räknar ner i tid på Slungan och påverkas av hur snabbt man sätter hastigheten i slidern
         {
 
+            slider.gameObject.SetActive(true);
+            
+            sliderDefautValue = slider.minValue;
+
+            extractorSpeedControl.gameObject.SetActive(true);
+
             totalTime -= Time.deltaTime * (1 + slider.value -sliderDefautValue); // så som inställt nu så blir slidern 0 i värde och vi lägger till1 för att den ska rör sig alls på klockan
             timerText.text = Mathf.Round(totalTime).ToString();
 
@@ -46,11 +60,24 @@ public class ExtractorTimer : MonoBehaviour
                 extractorMoveLerp.isLerping = false;
 
                 timerText.text = "Finished!!!";
+
+                messageboard.text = "";
             }
 
         }
-        
-       
+
+        if(Input.GetKeyDown(KeyCode.I)) 
+        {
+            slider.value = slider.value + 1f;
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            slider.value = slider.value - 1f;
+
+        }
+
 
     }
 }

@@ -33,24 +33,33 @@ public class ExtractorOperate : MonoBehaviour
     void Update()
     {
 
-        if ( extractorInteract.framesLoaded == 1)
+        if ( extractorInteract.framesLoaded == 1 && !isLerping)
         {
             canMakeHoney = true;
+
             messageBoard.text = "Press P to Start Extractor";
+
+            
         }
 
 
 
         if (Input.GetKeyDown(KeyCode.P) && canMakeHoney) // lägg till && canMakeHoney;
         {
+            
+
             // Toggle the lerping flag
             isLerping = !isLerping; // sätt boolen att det ska börja lerpa till sin motsas
 
             currentLerpTime = 0f; // If lerping is started, initialize the lerp time and duration
-            
 
+            messageBoard.text = "Extracting Honey, Time Left:"; // samma här - funkar bara en millisekund
+
+            extractorInteract.framesLoaded = 0; // Enda sättet jag kom på just nu att få bort meddellandet- "Press P to Start Extractor"
 
         }
+
+
 
         float speed = speedSlider.value; // hämta värdet i en float från speedSlider.value
 
