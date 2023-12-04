@@ -545,7 +545,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 70332158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8d02b11b7955443875d8947e25dd31, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bfdc7afd035d664ebb2e4202d942724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTagA: Capped
@@ -553,6 +553,8 @@ MonoBehaviour:
   messageBoard: {fileID: 1091694407}
   frameUncapped: 0
   insideCollider: 0
+  unCappedFrameTaken: 0
+  grabbingPointTransform: {fileID: 480795421}
   frame: {fileID: 229224613}
 --- !u!1 &115025673
 GameObject:
@@ -7613,8 +7615,9 @@ GameObject:
   m_Component:
   - component: {fileID: 743670450}
   - component: {fileID: 743670451}
+  - component: {fileID: 743670452}
   m_Layer: 0
-  m_Name: Honey Extractor (Parent) - SCRIPT-
+  m_Name: Extractor (Parent) - SCRIPT-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7659,6 +7662,27 @@ MonoBehaviour:
   lerpDuration: 0.1
   isLerping: 0
   canMakeHoney: 0
+--- !u!65 &743670452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743670449}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.7337694, y: 6.276639, z: 5.3985367}
+  m_Center: {x: 1.3668847, y: 0.8184074, z: 0.12885475}
 --- !u!1 &785534886
 GameObject:
   m_ObjectHideFlags: 0
@@ -8858,7 +8882,7 @@ GameObject:
   - component: {fileID: 899405106}
   - component: {fileID: 899405105}
   m_Layer: 0
-  m_Name: Timer (Empty) -SCRIPT-
+  m_Name: Extractor Timer (Empty) -SCRIPT-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8887,7 +8911,7 @@ Transform:
   m_GameObject: {fileID: 899405104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.035227, y: -1.5704732, z: -48.747707}
+  m_LocalPosition: {x: -14.9, y: 2.1, z: -28.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10608,6 +10632,7 @@ GameObject:
   - component: {fileID: 1529968814}
   - component: {fileID: 1529968820}
   - component: {fileID: 1529968821}
+  - component: {fileID: 1529968822}
   m_Layer: 0
   m_Name: Character (BeeKeeper)  - SCRIPT -
   m_TagString: Player
@@ -10872,6 +10897,24 @@ MonoBehaviour:
   messageBoard: {fileID: 1091694407}
   waxTrayTrigger: {fileID: 115025674}
   canPutFrameOnStand: 0
+--- !u!114 &1529968822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529968812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb541b41d146974fb0cb8978c31e7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageBoard: {fileID: 1091694407}
+  framesLoaded: 0
+  extractor: {fileID: 743670450}
+  canLoadFrame: 0
+  extraxtorLoadFrameEmpty: {fileID: 899405106}
+  frame: {fileID: 229224613}
 --- !u!1 &1636886990
 GameObject:
   m_ObjectHideFlags: 0
@@ -12938,13 +12981,13 @@ SceneRoots:
   - {fileID: 892048465}
   - {fileID: 116877968}
   - {fileID: 743670450}
+  - {fileID: 899405106}
   - {fileID: 785534887}
   - {fileID: 67238174}
-  - {fileID: 899405106}
   - {fileID: 421385131}
   - {fileID: 557281491}
-  - {fileID: 115025674}
   - {fileID: 70332159}
+  - {fileID: 115025674}
   - {fileID: 601652375}
   - {fileID: 1701813570}
   - {fileID: 2061070180}

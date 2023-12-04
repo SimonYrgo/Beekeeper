@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/* DETTA SCRIPT ANVÄNDS INTE JUST NU
+ * 
+ * 
+ */
+
 public class TakeUncappedFrame : MonoBehaviour
 {
-    WaxShaver waxShaver;  // se om vi kan ta frame från den som object?
+    WaxShaverTakeUncappedFrame waxShaver;  // se om vi kan ta frame från den som object?
 
     public TMP_Text messageBoard;
 
@@ -17,7 +22,7 @@ public class TakeUncappedFrame : MonoBehaviour
 
     void Start()
     {
-        waxShaver = GameObject.FindAnyObjectByType<WaxShaver>();    
+        waxShaver = GameObject.FindAnyObjectByType<WaxShaverTakeUncappedFrame>();    
 
 
     }

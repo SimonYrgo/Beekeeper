@@ -11,22 +11,14 @@ public class StartStopCarryingBox : MonoBehaviour
     public TMP_Text messageBoard; // Skapar slot för att kunna skriva meddelanden i Game Message TMP-Textobjektet
     public Transform grabbingPointTransform; // ser om jag kan lägga ett gameobjekt här i, som jag kan sno en Transform från sen
 
-
-
-
     public GameObject honeyBox; // skapar slot för boxLid för att kunna manipulera dess tranform sen
     private Rigidbody honeyBoxRb; // verkar som att även om man hänvisar till samma  gameobject måste man ändå skapa en slot på samma vis som om man tar in från ett annat script
     private Collider honeyBoxCollider; // ..samma sak med collider. Men dessutom klagade den om man inte satte "new"- ordet framför
 
-
     public Transform boxPlaceOnBench; // Hit ska HoneyBox sättas, till en emptys Transform
     private BenchInteract benchInteract;
 
-
     public bool hasPutBoxOnBench = false;
-
-
-
 
 
     void Start()
@@ -52,8 +44,8 @@ public class StartStopCarryingBox : MonoBehaviour
     {
         if (benchInteract.canPutBoxOnBench && !hasPutBoxOnBench)
         {
-            
 
+            honeyBox.transform.parent = null;
 
             honeyBoxRb.transform.position = boxPlaceOnBench.position;
             honeyBoxRb.transform.rotation = boxPlaceOnBench.rotation;

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,31 @@ public class ExtractorOperate : MonoBehaviour
 
     public bool canMakeHoney;
 
+    public TMP_Text messageBoard;
+
+
+    ExtractorInteract extractorInteract;
+
+
+    void Start()
+    {
+            
+        extractorInteract = GameObject.FindAnyObjectByType<ExtractorInteract>();
+
+    }
+
+
     void Update()
     {
+
+        if ( extractorInteract.framesLoaded == 1)
+        {
+            canMakeHoney = true;
+            messageBoard.text = "Press P to Start Extractor";
+        }
+
+
+
         if (Input.GetKeyDown(KeyCode.P) && canMakeHoney) // lägg till && canMakeHoney;
         {
             // Toggle the lerping flag

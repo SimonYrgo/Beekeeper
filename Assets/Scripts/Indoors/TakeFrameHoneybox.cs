@@ -124,13 +124,15 @@ public class TakeFrameHoneybox : MonoBehaviour
 
             if (waxTrayInteract.canPutFrameOnStand) 
             {
-                
+
+                frame.transform.parent = null;
+
                 frameRb.transform.position = framePlaceOnStand.position;
                 frameRb.transform.rotation = framePlaceOnStand.rotation;
                 frame.transform.parent = framePlaceOnStand; // = null om man vill un-parenta den               
 
 
-                // Invoke(nameof(GiveFrameBackPhysics), 0.5f); // När jag sätter på fysiken igen med denna funktion,  igen så hoppar den upp eftersom den skapar en Box Collider med ett visst mått-vad göra?
+                // Invoke(nameof(GiveFrameBackPhysics), 0.5f); // När jag sätter på fysiken igen med denna funktion, så blir det sket konstigt
 
                 waxTrayInteract.canPutFrameOnStand = false;     // vi kan inte kängre sätta frame på Stand..>
                 framePutOnStand = true;                        // ..eftersom vi har nu satt frame på stand
@@ -153,6 +155,7 @@ public class TakeFrameHoneybox : MonoBehaviour
             frameRb = frame.GetComponent<Rigidbody>(); // hämtar Rigidbodyn från GameObjectet i sloten frame
             frameCollider = frame.GetComponent<Collider>(); // samma med collidern
 
+            frame.transform.parent = null; // sätt parent till null på ditt child innan du byter parent- detta för att inte skalan på childet ska förändras till att ta relativ skala mot parent. Det är en svaghet i Unity att det är på detta sätt
 
             frameRb.transform.position = grabbingPointTransform.position;
             frameRb.transform.rotation = grabbingPointTransform.rotation;
