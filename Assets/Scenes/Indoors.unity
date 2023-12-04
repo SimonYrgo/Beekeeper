@@ -552,6 +552,7 @@ MonoBehaviour:
   targetTagB: UnCapped
   messageBoard: {fileID: 1091694407}
   frameUncapped: 0
+  insideCollider: 0
   frame: {fileID: 229224613}
 --- !u!1 &115025673
 GameObject:
@@ -12939,13 +12940,13 @@ SceneRoots:
   - {fileID: 743670450}
   - {fileID: 785534887}
   - {fileID: 67238174}
+  - {fileID: 899405106}
   - {fileID: 421385131}
   - {fileID: 557281491}
   - {fileID: 115025674}
   - {fileID: 70332159}
   - {fileID: 601652375}
   - {fileID: 1701813570}
-  - {fileID: 899405106}
   - {fileID: 2061070180}
   - {fileID: 1196882315}
   - {fileID: 834308889}

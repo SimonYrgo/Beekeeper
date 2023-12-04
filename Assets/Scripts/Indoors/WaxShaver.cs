@@ -13,7 +13,7 @@ public class WaxShaver : MonoBehaviour
 
     public bool frameUncapped = false;
 
-
+    public bool insideCollider = false;
 
     TakeFrameHoneybox takeFrameHoneybox;
 
@@ -56,9 +56,9 @@ public class WaxShaver : MonoBehaviour
 
         }
 
-        if (frameUncapped) 
+        if (frameUncapped && insideCollider) 
         {
-            messageBoard.text = "Press P to pick up uncapped frame";
+            messageBoard.text = "Press P to pick up uncapped frame"; // här är nog felet med att den inte uppdateras när man går ut
 
             if(Input.GetKeyDown(KeyCode.P)) 
             {
@@ -80,6 +80,8 @@ public class WaxShaver : MonoBehaviour
     private void OnTriggerEnter(Collider player)
     {
 
+        insideCollider = true;
+
 
 
         if (player.tag == "Player" && takeFrameHoneybox.framePutOnStand && !frameUncapped) 
@@ -98,6 +100,7 @@ public class WaxShaver : MonoBehaviour
         
     }
 
+    /*
 
     private void OnTriggerStay(Collider player) 
     {
@@ -120,15 +123,18 @@ public class WaxShaver : MonoBehaviour
 
     }
 
+    */
+
     private void OnTriggerExit(Collider player)
     {
+        insideCollider = false;
 
 
-
-        if (player.tag == "Player" && takeFrameHoneybox.framePutOnStand && frameUncapped)
+        if (player.tag == "Player" && takeFrameHoneybox.framePutOnStand || frameUncapped )
 
         {
             canUncapFrame = false;
+
             messageBoard.text = "";
             
 

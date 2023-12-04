@@ -57,7 +57,7 @@ public class TakeFrameHoneybox : MonoBehaviour
     private void OnTriggerEnter(Collider player)
 
     {
-        if (player.tag == "Player" && startStopCarryingBox.hasPutBoxOnBench && !frameGrabbed) // Om raycasten träffar en Collider OCH jag har satt kupan på bänken OCh inte bär på en frame redan: 
+        if (player.tag == "Player" && startStopCarryingBox.hasPutBoxOnBench && !frameGrabbed && !framePutOnStand) // Om raycasten träffar en Collider OCH jag har satt kupan på bänken OCh inte bär på en frame redan: 
         {
 
             // Debug.Log("Entered Take Frame Trigger Collider");
