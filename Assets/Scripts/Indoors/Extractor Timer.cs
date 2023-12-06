@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ExtractorTimer : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class ExtractorTimer : MonoBehaviour
 
     ExtractorOperate extractorMoveLerp;
 
-    float totalTime = 100f;
+    float totalTime = 75f;
 
-    float sliderDefautValue; 
+    float sliderDefautValue;
+
+
+    ChangeHoneyColor changeHoneyColor;
 
 
     // Start is called before the first frame update
@@ -31,6 +35,8 @@ public class ExtractorTimer : MonoBehaviour
         slider.gameObject.SetActive(false);
 
         extractorSpeedControl.gameObject.SetActive(false);
+
+        changeHoneyColor = GameObject.FindObjectOfType<ChangeHoneyColor>();
 
     }
 
@@ -62,6 +68,10 @@ public class ExtractorTimer : MonoBehaviour
                 timerText.text = "Finished!!!";
 
                 messageboard.text = "";
+
+                changeHoneyColor.ChangeColor();
+
+               Invoke(nameof(LoadEndScene), 3f);
             }
 
         }
@@ -79,5 +89,10 @@ public class ExtractorTimer : MonoBehaviour
         }
 
 
+    }
+
+    private void LoadEndScene()
+    {
+        SceneManager.LoadSceneAsync(3);
     }
 }
